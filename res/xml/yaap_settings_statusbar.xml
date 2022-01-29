@@ -48,6 +48,13 @@
         android:summaryOff="@string/location_privacy_indicator_summary_off"
         android:defaultValue="false" />
 
+    <!-- 4G icon -->
+    <com.yasp.settings.preferences.SystemSettingSwitchPreference
+        android:key="show_fourg_icon"
+        android:title="@string/show_fourg_icon_title"
+        android:summary="@string/show_fourg_icon_summary"
+        android:defaultValue="false"/>
+
     <!-- Clock position -->
     <com.yasp.settings.preferences.SystemSettingListPreference
         android:key="statusbar_clock_position"
