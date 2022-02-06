@@ -335,5 +335,8 @@
      <string name="theme_customization_font_title">Headline / Body font</string>
      <!-- [CHAR_LIMIT=NONE] Developer Settings: Title of the setting which enables overlays to customize the system wide icon pack. -->
     <string name="theme_customization_icon_pack_title">Icon pack</string>    
-    
-</resources>    
+
+    <string name="three_finger_screenshot_title">Swipe to screenshot</string>
+    <string name="three_finger_screenshot_summary">Swipe down with three fingers to take a screenshot</string>
+
+</resources>
