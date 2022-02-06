@@ -16,6 +16,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:settings="http://schemas.android.com/apk/res-auto"
     android:title="@string/yaap_settings_title" >
+    
+        <!-- Customization -->
+        <Preference
+	        android:key="customisation"
+	        android:title="@string/customisation_title"
+	        android:fragment="com.yasp.settings.fragments.Customisation"
+	        android:icon="@drawable/ic_customisation"/>
 
         <!-- Status Bar -->
         <Preference

@@ -325,4 +325,7 @@
     <string name="vowifi_icon_vivo">Vivo Icon</string>
     <string name="vowifi_icon_margaritov">Margaritov Icon</string>
 
-</resources>
+    <!-- Customisation -->
+    <string name="customisation_title">Themes</string>
+
+</resources>    
