@@ -22,7 +22,15 @@
         android:title="@string/monet_engine_settings_title"
         android:summary="@string/monet_engine_settings_summary"
         android:fragment="com.yasp.settings.fragments.MonetSettings" />
-    
+           	
+        <com.yasp.settings.preferences.SystemSettingListPreference
+        android:key="qs_clock_picker"
+        android:defaultValue="0"
+        android:title="@string/qsclockpicker_title"
+        android:entries="@array/qsclock_type_entries"
+        android:entryValues="@array/qsclock_type_values"
+        android:summary="%s" />
+        
     <!-- Theming -->    
     <PreferenceCategory
          android:key="theme_customization_category"
