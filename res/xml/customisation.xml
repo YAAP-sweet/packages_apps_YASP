@@ -31,18 +31,41 @@
         android:entryValues="@array/qsclock_type_values"
         android:summary="%s" />
         
-    <!-- Theming -->    
     <PreferenceCategory
-         android:key="theme_customization_category"
-         android:title="@string/theme_customization_category">
-
-         <ListPreference
-            android:key="android.theme.customization.font"
-            android:title="@string/theme_customization_font_title"/>
-        <ListPreference
+        android:key="theme_customization_category"
+        android:title="@string/theme_customization_category">
+        
+        <Preference
+            android:key="android.theme.customization.fonts"
+            android:title="@string/theme_customization_font_title"
+            android:summary="@string/theme_customization_font_summary"
+            android:fragment="com.yasp.settings.fragments.FontsPicker"/>
+            
+        <Preference
             android:key="android.theme.customization.icon_pack"
-            android:title="@string/theme_customization_icon_pack_title"/>
-    </PreferenceCategory>        
+            android:title="@string/theme_customization_icon_pack_title"
+            android:summary="@string/theme_customization_icon_pack_summary"
+            android:fragment="com.yasp.settings.fragments.StatusbarIcons"/>
+            
+       <Preference
+            android:key="android.theme.customization.signal_icon"
+            android:title="@string/theme_customization_signal_icon_title"
+            android:summary="@string/theme_customization_signal_icon_summary"
+            android:fragment="com.yasp.settings.fragments.SignalIcons"/>
+            
+      <Preference
+            android:key="android.theme.customization.wifi_icon"
+            android:title="@string/theme_customization_wifi_icon_title"
+            android:summary="@string/theme_customization_wifi_icon_summary"
+            android:fragment="com.yasp.settings.fragments.WifiIcons"/>      
+            
+        <Preference
+            android:key="android.theme.customization.adaptive_icon_shape"
+            android:title="@string/theme_customization_icon_shape_title"
+            android:summary="@string/theme_customization_icon_shape_summary"
+            android:fragment="com.yasp.settings.fragments.IconShapes"/>
+            
+       </PreferenceCategory>     
         
 </PreferenceScreen>
 
