@@ -341,4 +341,7 @@
     <string name="artwork_media_background_enable_blur_title">Blur media media artwork background</string>
     <string name="artwork_media_background_blur_radius_title">Blur amount for media artwork</string>
     <string name="artwork_media_background_alpha_title">Transparency of media artwork</string>
+
+    <string name="search">Search</string>
+    <string name="search_apps">Search apps</string>
 </resources>
