@@ -19,12 +19,15 @@ package com.blaze.house.categories;
 import android.content.Context;
 import android.content.ContentResolver;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.content.res.Resources;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
+import android.provider.Settings;
 import com.android.settings.SettingsPreferenceFragment;
 import com.blaze.house.preferences.SecureSettingSwitchPreference;
 
@@ -35,7 +38,7 @@ public class StatusBar extends SettingsPreferenceFragment implements
     private static final String COMBINED_STATUSBAR_ICONS = "combined_status_bar_signal_icons";
     private static final String CONFIG_RESOURCE_NAME = "flag_combined_status_bar_signal_icons";
     private static final String SYSTEMUI_PACKAGE = "com.android.systemui";
-    
+
     SecureSettingSwitchPreference mCombinedIcons;
 
     @Override
@@ -44,8 +47,9 @@ public class StatusBar extends SettingsPreferenceFragment implements
 
         addPreferencesFromResource(R.xml.status_bar);
 
-        ContentResolver resolver = getActivity().getContentResolver();
-        
+        PreferenceScreen prefSet = getPreferenceScreen();
+        final ContentResolver resolver = getActivity().getContentResolver();
+
         mCombinedIcons = (SecureSettingSwitchPreference)
                 findPreference(COMBINED_STATUSBAR_ICONS);
         Resources sysUIRes = null;
@@ -66,8 +70,6 @@ public class StatusBar extends SettingsPreferenceFragment implements
         mCombinedIcons.setOnPreferenceChangeListener(this);
     }
 
-    }
-
     @Override
     public int getMetricsCategory() {
         return MetricsProto.MetricsEvent.BLAZE_HOUSE;
@@ -84,11 +86,13 @@ public class StatusBar extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
-        } else if (preference == mCombinedIcons) {
-            Settings.Secure.putInt(getActivity().getContentResolver(), COMBINED_STATUSBAR_ICONS, (boolean) newValue ? 1 : 0);
+        ContentResolver resolver = getActivity().getContentResolver();
+        if (preference == mCombinedIcons) {
+            boolean enabled = (boolean) objValue;
+            Settings.Secure.putInt(resolver,
+                    COMBINED_STATUSBAR_ICONS, enabled ? 1 : 0);
             return true;
-        }    
+        }
         return true;
     }
 

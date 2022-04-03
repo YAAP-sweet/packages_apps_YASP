@@ -16,10 +16,13 @@
 
 package com.blaze.house.categories;
 
+import android.app.ActivityManagerNative;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.os.Vibrator;
 
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
@@ -29,9 +32,13 @@ import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
 import androidx.preference.PreferenceViewHolder;
 import androidx.preference.SwitchPreference;
+import android.provider.Settings;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.internal.util.blaze.BlazeUtils;
+import java.util.Locale;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.settings.R;
@@ -43,7 +50,7 @@ public class System extends SettingsPreferenceFragment implements
     private static final String TAG = "System";
     private static final String INCALL_VIB_OPTIONS = "incall_vib_options";
     private static final String TORCH_POWER_BUTTON_GESTURE = "torch_power_button_gesture";
-    
+
     private ListPreference mTorchPowerButton;
 
     @Override
@@ -54,7 +61,7 @@ public class System extends SettingsPreferenceFragment implements
 
         final ContentResolver resolver = getActivity().getContentResolver();
         final PreferenceScreen prefSet = getPreferenceScreen();
-        
+
              // screen off torch
         mTorchPowerButton = (ListPreference) findPreference(TORCH_POWER_BUTTON_GESTURE);
         int mTorchPowerButtonValue = Settings.System.getInt(resolver,
@@ -62,7 +69,6 @@ public class System extends SettingsPreferenceFragment implements
         mTorchPowerButton.setValue(Integer.toString(mTorchPowerButtonValue));
         mTorchPowerButton.setSummary(mTorchPowerButton.getEntry());
         mTorchPowerButton.setOnPreferenceChangeListener(this);
-        }
 
         PreferenceCategory incallVibCategory = (PreferenceCategory) findPreference(INCALL_VIB_OPTIONS);
         if (!BlazeUtils.isVoiceCapable(getActivity())) {
@@ -86,10 +92,10 @@ public class System extends SettingsPreferenceFragment implements
     }
 
     public boolean onPreferenceChange(Preference preference, Object objValue) {
-        final String key = preference.getKey();
+        ContentResolver resolver = getActivity().getContentResolver();
         if (preference == mTorchPowerButton) {
-            int mTorchPowerButtonValue = Integer.valueOf((String) newValue);
-            int index = mTorchPowerButton.findIndexOfValue((String) newValue);
+            int mTorchPowerButtonValue = Integer.valueOf((String) objValue);
+            int index = mTorchPowerButton.findIndexOfValue((String) objValue);
             mTorchPowerButton.setSummary(
                     mTorchPowerButton.getEntries()[index]);
             Settings.System.putInt(resolver, Settings.System.TORCH_POWER_BUTTON_GESTURE,
